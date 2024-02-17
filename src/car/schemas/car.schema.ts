@@ -10,7 +10,7 @@ export class Car {
     model: string
 
     @Prop()
-    year: string
+    year: number
 
     @Prop()
     VIN: string

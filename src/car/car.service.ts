@@ -12,22 +12,22 @@ export class CarService{
 
 
     async getAll() : Promise<Car[]> {
-        return this.carModel.find().exec()
+        return this.carModel.find().exec();
     }
 
     async getById(id : string) :Promise<Car> {
         return this.carModel.findById(id);
     }
 
-    async create(carDto :CreateCarDto) {
-        const newCar = new this.carModel(carDto)
-        return newCar.save()
+    async create(carDto :CreateCarDto):Promise<Car> {
+        const newCar = new this.carModel(carDto);
+        return newCar.save();
     }
     async remove(id: string) :Promise<Car> {
-        return this.carModel.findByIdAndDelete(id)
+        return this.carModel.findByIdAndDelete(id);
     }
 
     async update(id: string, carDto: UpdateCarDto) :Promise<Car>{
-        return this.carModel.findByIdAndUpdate(id, carDto, {new: true})
+        return this.carModel.findByIdAndUpdate(id, carDto, {new: true});
     }
 }
