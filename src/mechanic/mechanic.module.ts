@@ -2,7 +2,7 @@ import {Module} from "@nestjs/common";
 import {MechanicService} from "./mechanic.service";
 import {MechanicController} from "./mechanic.controller";
 import {MongooseModule} from "@nestjs/mongoose";
-import {Mechanic, mechanicSchema} from "../car/schemas/mechanic.schema";
+import {Mechanic, mechanicSchema} from "../schemas/mechanic.schema";
 
 @Module({
     providers: [MechanicService],

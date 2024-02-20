@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put} f
 import {CreateCarDto} from "./dto/create-car.dto";
 import {UpdateCarDto} from "./dto/update-car.dto";
 import {CarService} from "./car.service";
-import {Car} from "./schemas/car.schema";
+import {Car} from "../schemas/car.schema";
 
 @Controller('car')
 export class CarController {

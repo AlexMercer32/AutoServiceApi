@@ -3,7 +3,7 @@ import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
 import {CreateMechanicDto} from "./dto/create-mechanic-dto";
 import {UpdateMechanicDto} from "./dto/update-mechanic-dto";
-import {Mechanic, MechanicDocument} from "../car/schemas/mechanic.schema";
+import {Mechanic, MechanicDocument} from "../schemas/mechanic.schema";
 
 @Injectable()
 export class MechanicService{
