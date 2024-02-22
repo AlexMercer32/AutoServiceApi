@@ -1,12 +1,12 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {category} from "../enums/enum.piece";
+import { PieceCategoryEnum} from "../enums/enum.piece";
 export type PieceDocument = Piece & Document;
 @Schema()
 export class Piece{
     @Prop()
     number: string
     @Prop()
-    Category:category
+    category:PieceCategoryEnum
     @Prop()
     description:string
 }

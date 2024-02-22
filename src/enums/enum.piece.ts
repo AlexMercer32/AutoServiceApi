@@ -1,4 +1,4 @@
-export enum category{
+export enum PieceCategoryEnum{
     engine = 'Engine',
     clutch = 'Clutch',
     driveParts = 'Drive Parts',

@@ -1,5 +1,5 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import {experienceMechanic, pricePerHour, qualityOfWork} from "../enums/enum.mechanic";
+import {ExperienceMechanicEnum, PricePerHourEnum, QualityOfWorkEnum} from "../enums/enum.mechanic";
 export type MechanicDocument = Mechanic & Document;
 @Schema()
 export class Mechanic{
@@ -8,13 +8,13 @@ export class Mechanic{
     @Prop()
     surname:string
     @Prop()
-    experience:experienceMechanic
+    experience:ExperienceMechanicEnum
     @Prop()
     age:number
     @Prop()
-    qualityOfWork:qualityOfWork
+    qualityOfWork:QualityOfWorkEnum
     @Prop()
-    pricePerHour:pricePerHour
+    pricePerHour:PricePerHourEnum
     @Prop()
     carInWork:string
 }

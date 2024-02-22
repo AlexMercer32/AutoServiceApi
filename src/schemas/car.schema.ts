@@ -1,11 +1,11 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import {Document} from 'mongoose'
-import {markDE, markJP, markUS, motor} from "../enums/enum.car";
+import {CarMotorEnum} from "../enums/enum.car";
 export type CarDocument = Car & Document;
 @Schema()
 export class Car {
     @Prop()
-    mark:[markDE,markJP,markUS]
+    mark: string
 
     @Prop()
     model: string
@@ -17,7 +17,7 @@ export class Car {
     VIN: string
 
     @Prop()
-    motor: motor
+    motor: CarMotorEnum
 
     @Prop()
     kindOfWork: string
