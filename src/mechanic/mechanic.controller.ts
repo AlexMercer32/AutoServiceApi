@@ -1,5 +1,5 @@
 import {MechanicService} from "./mechanic.service";
-import {Body, Controller, Delete, Get, Param, Post, Put} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, Post, Put, ValidationPipe} from "@nestjs/common";
 import {CreateMechanicDto} from "./dto/create-mechanic-dto";
 import {UpdateMechanicDto} from "./dto/update-mechanic-dto";
 import {Mechanic} from "../schemas/mechanic.schema";
@@ -17,7 +17,7 @@ export class MechanicController{
         return this.mechanicService.getByIdMechanics(id);
     }
     @Post()
-    createMechanic(@Body() createMechanicDto: CreateMechanicDto) :Promise<Mechanic>{
+    createMechanic(@Body(ValidationPipe) createMechanicDto: CreateMechanicDto) :Promise<Mechanic>{
         return this.mechanicService.createMechanic(createMechanicDto);
     }
     @Delete(':id')
@@ -25,7 +25,7 @@ export class MechanicController{
         return this.mechanicService.removeMechanic(id);
     }
     @Put(':id')
-    update(@Body() updateMechanicDto : UpdateMechanicDto , @Param('id') id: string):Promise<Mechanic>{
+    update(@Body(ValidationPipe) updateMechanicDto : UpdateMechanicDto , @Param('id') id: string):Promise<Mechanic>{
         return this.mechanicService.updateMechanic(id, updateMechanicDto);
     }
 }

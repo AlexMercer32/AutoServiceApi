@@ -4,8 +4,6 @@ import {InjectModel} from "@nestjs/mongoose";
 import {Car, CarDocument} from "../schemas/car.schema";
 import {UpdateCarDto} from "./dto/update-car.dto";
 import { Model } from "mongoose";
-
-
 @Injectable()
 export class CarService{
     constructor(@InjectModel(Car.name) private carModel : Model<CarDocument>) {}

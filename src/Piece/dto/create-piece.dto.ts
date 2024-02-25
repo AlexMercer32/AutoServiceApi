@@ -1,8 +1,14 @@
-import {category} from "../../enums/enum.piece";
+import {PieceCategoryEnum} from "../../enums/enum.piece";
 import { v4 as uuid } from "uuid";
+import {IsEnum, IsNotEmpty, IsNumber, IsString, IsUUID} from "class-validator";
 export class CreatePieceDto{
-    id: string = uuid();
+    @IsUUID()
+    readonly id: string = uuid();
+    @IsNumber()
     number: string
-    category: category
+    @IsEnum(PieceCategoryEnum)
+    category: PieceCategoryEnum
+    @IsNotEmpty()
+    @IsString()
     description: string
 }

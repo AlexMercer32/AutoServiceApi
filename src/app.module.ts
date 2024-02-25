@@ -1,24 +1,25 @@
 import {MongooseModule} from "@nestjs/mongoose";
-import { ConfigModule } from '@nestjs/config';
+import {ConfigModule, ConfigService} from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {CarsModule} from "./car/cars.module";
 import {MechanicModule} from "./mechanic/mechanic.module";
 import {PiecesModule} from "./Piece/pieces.module";
-import * as process from "process";
-
-
-
 @Module({
-  imports: [ConfigModule.forRoot({
-      envFilePath: 'config.env',
-  }),
+  imports: [ConfigModule.forRoot(),
       PiecesModule,
       MechanicModule,
       CarsModule,
-      MongooseModule.forRoot(process.env.MONGODBURI)],
+      MongooseModule.forRootAsync({
+          imports: [ConfigModule],
+          inject: [ConfigService],
+          useFactory: async (config: ConfigService) => ({
+              uri: config.get<string>('MONGODB_URI'),
+          })
+      })],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}
