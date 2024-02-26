@@ -1,6 +1,7 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import {Document} from 'mongoose'
-import {CarMotorEnum} from "../enums/enum.car";
+import {CarKindOfWorkEnum, CarMotorEnum} from "../enums/enum.car";
+import {IsEnum, minDate} from "class-validator";
 export type CarDocument = Car & Document;
 @Schema()
 export class Car {
@@ -10,16 +11,24 @@ export class Car {
     @Prop()
     model: string
 
-    @Prop()
+    @Prop(new Date().getFullYear())
     year: number
 
-    @Prop()
+    @Prop({
+        maxlength:17,
+        unique:true,
+        minlength:17,
+    })
     VIN: string
 
-    @Prop()
+    @Prop({
+        enum:[CarMotorEnum]
+    })
     motor: CarMotorEnum
 
-    @Prop()
-    kindOfWork: string
+    @Prop({
+        enum:[CarKindOfWorkEnum]
+    })
+    kindOfWork: CarKindOfWorkEnum
 }
 export const carSchema = SchemaFactory.createForClass(Car);

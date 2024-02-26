@@ -1,21 +1,26 @@
 import {ExperienceMechanicEnum, PricePerHourEnum, QualityOfWorkEnum} from "../../enums/enum.mechanic";
-import { v4 as uuid } from "uuid";
-import {IsEnum, IsNotEmpty, IsString, IsUUID, Max, Min} from "class-validator";
+import {IsEnum, IsInt, IsNotEmpty, IsString, IsUUID, Max, Min} from "class-validator";
 export class CreateMechanicDto{
     @IsUUID()
-    readonly id: string = uuid();
+    readonly id: string
     @IsString()
+    @IsNotEmpty()
     name: string
     @IsString()
+    @IsNotEmpty()
     surname: string
     @IsEnum(ExperienceMechanicEnum)
     @IsNotEmpty()
     experience: ExperienceMechanicEnum
     @Max(70)
     @Min(18)
+    @IsNotEmpty()
+    @IsInt()
     age: number
     @IsEnum(QualityOfWorkEnum)
+    @IsNotEmpty()
     qualityOfWork: QualityOfWorkEnum
+    @IsNotEmpty()
     @IsEnum(PricePerHourEnum)
     pricePerHour: PricePerHourEnum
     @IsString()

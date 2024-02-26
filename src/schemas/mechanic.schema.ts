@@ -7,13 +7,22 @@ export class Mechanic{
     name:string
     @Prop()
     surname:string
-    @Prop()
+    @Prop({
+        enum:[ExperienceMechanicEnum]
+    })
     experience:ExperienceMechanicEnum
-    @Prop()
+    @Prop({
+        max:70,
+        min:18,
+    })
     age:number
-    @Prop()
+    @Prop({
+        enum:[QualityOfWorkEnum]
+    })
     qualityOfWork:QualityOfWorkEnum
-    @Prop()
+    @Prop({
+        enum:[PricePerHourEnum]
+    })
     pricePerHour:PricePerHourEnum
     @Prop()
     carInWork:string

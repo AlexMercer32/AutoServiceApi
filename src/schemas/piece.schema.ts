@@ -5,7 +5,9 @@ export type PieceDocument = Piece & Document;
 export class Piece{
     @Prop()
     number: string
-    @Prop()
+    @Prop({
+        enum:[PieceCategoryEnum]
+    })
     category:PieceCategoryEnum
     @Prop()
     description:string

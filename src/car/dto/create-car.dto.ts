@@ -1,32 +1,36 @@
 import {
      IsNotEmpty,
      IsUUID,
-     IsNumber,
      IsPositive,
      IsEnum,
      IsString,
-     Max, Min, MaxLength
+     MaxLength, IsInt, MinLength, MinDate, MaxDate
 } from 'class-validator';
 import {CarKindOfWorkEnum, CarMotorEnum} from "../../enums/enum.car";
-import {v4 as uuid} from "uuid";
 export class CreateCarDto{
      @IsUUID()
-     readonly id: string = uuid()
+     readonly id: string
      @IsNotEmpty()
+     @IsString()
      mark: string
+     @IsString()
      @IsNotEmpty()
      model: string
-     @IsNumber()
+     @IsInt()
      @IsPositive()
-     @Max(2024)
-     @Min(1905)
+     @IsNotEmpty()
+     @MaxDate(new Date())
+     @MinDate(new Date(1940))
      year: number
      @IsNotEmpty()
+     @IsString()
+     @MinLength(17)
      @MaxLength(17)
      VIN: string
-     @IsEnum({CarMotorEnum})
+     @IsEnum(CarMotorEnum)
+     @IsNotEmpty()
      motor: CarMotorEnum
-     @IsString()
+     @IsEnum(CarKindOfWorkEnum)
      @IsNotEmpty()
      kindOfWork: CarKindOfWorkEnum
 }

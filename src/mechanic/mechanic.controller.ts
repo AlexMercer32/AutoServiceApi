@@ -1,8 +1,20 @@
 import {MechanicService} from "./mechanic.service";
-import {Body, Controller, Delete, Get, Param, Post, Put, ValidationPipe} from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    ParseEnumPipe, ParseIntPipe,
+    ParseUUIDPipe,
+    Post,
+    Put,
+    ValidationPipe
+} from "@nestjs/common";
 import {CreateMechanicDto} from "./dto/create-mechanic-dto";
 import {UpdateMechanicDto} from "./dto/update-mechanic-dto";
 import {Mechanic} from "../schemas/mechanic.schema";
+import {ExperienceMechanicEnum, PricePerHourEnum, QualityOfWorkEnum} from "../enums/enum.mechanic";
 @Controller('mechanic')
 export class MechanicController{
 
@@ -13,19 +25,25 @@ export class MechanicController{
         return this.mechanicService.getAllMechanics();
     }
     @Get(':id')
-    getOneMechanic(@Param('id') id:string) :Promise<Mechanic>{
+    getOneMechanic(@Param('id', new ParseUUIDPipe(),
+        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
+        ) id:string) :Promise<Mechanic>{
         return this.mechanicService.getByIdMechanics(id);
     }
     @Post()
-    createMechanic(@Body(ValidationPipe) createMechanicDto: CreateMechanicDto) :Promise<Mechanic>{
+    createMechanic(@Body() createMechanicDto: CreateMechanicDto) :Promise<Mechanic>{
         return this.mechanicService.createMechanic(createMechanicDto);
     }
     @Delete(':id')
-    removeMechanic(@Param('id') id:string) :Promise<Mechanic>{
+    removeMechanic(@Param('id', new ParseUUIDPipe(),
+        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
+        ) id:string) :Promise<Mechanic>{
         return this.mechanicService.removeMechanic(id);
     }
     @Put(':id')
-    update(@Body(ValidationPipe) updateMechanicDto : UpdateMechanicDto , @Param('id') id: string):Promise<Mechanic>{
+    update(@Body() updateMechanicDto : UpdateMechanicDto , @Param('id', new ParseUUIDPipe(),
+        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
+        ) id: string):Promise<Mechanic>{
         return this.mechanicService.updateMechanic(id, updateMechanicDto);
     }
 }
