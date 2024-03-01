@@ -3,7 +3,7 @@ import {
     Controller,
     Delete,
     Get,
-    Param,
+    Param, ParseEnumPipe,
     ParseIntPipe,
     ParseUUIDPipe,
     Post,
@@ -15,6 +15,7 @@ import {CreatePieceDto} from "./dto/create-piece.dto";
 import {Piece} from "../schemas/piece.schema";
 import {UpdatePieceDto} from "./dto/update-piece.dto";
 import {isUUID} from "class-validator";
+import {PieceCategoryEnum} from "../enums/enum.piece";
 
 @Controller('piece')
 export class PieceController{
@@ -25,7 +26,7 @@ export class PieceController{
         return this.pieceService.getAll();
     }
 @Get(':id')
-    getOne(@Param('id', new ParseUUIDPipe()) id : string):Promise<Piece>{
+    getOne(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum)) id : string):Promise<Piece>{
         return this.pieceService.getById(id);
 }
 @Post()
@@ -33,11 +34,11 @@ export class PieceController{
         return this.pieceService.create(createPieceDto);
 }
 @Delete(':id')
-    remove(@Param('id', new ParseUUIDPipe()) id:string):Promise<Piece>{
+    remove(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum)) id:string):Promise<Piece>{
         return this.pieceService.remove(id);
 }
 @Put(':id')
-    update(@Body() updatePieceDto:UpdatePieceDto, @Param('id', new ParseUUIDPipe())id:string):Promise<Piece>{
+    update(@Body() updatePieceDto:UpdatePieceDto, @Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum))id:string):Promise<Piece>{
         return this.pieceService.update(id, updatePieceDto);
 }
 
