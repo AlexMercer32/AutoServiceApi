@@ -28,7 +28,7 @@ export class CarController {
 
     @Get(':id')
     @HttpCode(HttpStatus.OK)
-    getOne(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe([CarMotorEnum,CarKindOfWorkEnum])) id: string):Promise<Car>  {
+    getOne(@Param('id', new ParseUUIDPipe()) id: string):Promise<Car>  {
         return this.carService.getById(id);
     }
     @Post()
@@ -38,12 +38,12 @@ export class CarController {
     }
     @Delete(':id')
     @HttpCode(HttpStatus.OK)
-    remove(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe([CarMotorEnum,CarKindOfWorkEnum])) id : string) :Promise<Car> {
+    remove(@Param('id', new ParseUUIDPipe()) id : string) :Promise<Car> {
           return this.carService.remove(id);
     }
     @Put(':id')
     @HttpCode(HttpStatus.OK)
-    update(@Body() updateCarDto: UpdateCarDto, @Param('id', new ParseUUIDPipe(), new ParseEnumPipe([CarMotorEnum,CarKindOfWorkEnum])) id : string):Promise<Car>{
+    update(@Body() updateCarDto: UpdateCarDto, @Param('id', new ParseUUIDPipe()) id : string):Promise<Car>{
          return this.carService.update(id , updateCarDto);
     }
 }

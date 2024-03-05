@@ -26,7 +26,7 @@ export class PieceController{
         return this.pieceService.getAll();
     }
 @Get(':id')
-    getOne(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum)) id : string):Promise<Piece>{
+    getOne(@Param('id', new ParseUUIDPipe()) id : string):Promise<Piece>{
         return this.pieceService.getById(id);
 }
 @Post()
@@ -34,11 +34,11 @@ export class PieceController{
         return this.pieceService.create(createPieceDto);
 }
 @Delete(':id')
-    remove(@Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum)) id:string):Promise<Piece>{
+    remove(@Param('id', new ParseUUIDPipe()) id:string):Promise<Piece>{
         return this.pieceService.remove(id);
 }
 @Put(':id')
-    update(@Body() updatePieceDto:UpdatePieceDto, @Param('id', new ParseUUIDPipe(), new ParseEnumPipe(PieceCategoryEnum))id:string):Promise<Piece>{
+    update(@Body() updatePieceDto:UpdatePieceDto, @Param('id', new ParseUUIDPipe())id:string):Promise<Piece>{
         return this.pieceService.update(id, updatePieceDto);
 }
 

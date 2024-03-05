@@ -25,9 +25,7 @@ export class MechanicController{
         return this.mechanicService.getAllMechanics();
     }
     @Get(':id')
-    getOneMechanic(@Param('id', new ParseUUIDPipe(),
-        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
-        ) id:string) :Promise<Mechanic>{
+    getOneMechanic(@Param('id', new ParseUUIDPipe()) id:string) :Promise<Mechanic>{
         return this.mechanicService.getByIdMechanics(id);
     }
     @Post()
@@ -35,15 +33,11 @@ export class MechanicController{
         return this.mechanicService.createMechanic(createMechanicDto);
     }
     @Delete(':id')
-    removeMechanic(@Param('id', new ParseUUIDPipe(),
-        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
-        ) id:string) :Promise<Mechanic>{
+    removeMechanic(@Param('id', new ParseUUIDPipe()) id:string) :Promise<Mechanic>{
         return this.mechanicService.removeMechanic(id);
     }
     @Put(':id')
-    update(@Body() updateMechanicDto : UpdateMechanicDto , @Param('id', new ParseUUIDPipe(),
-        new ParseEnumPipe([ExperienceMechanicEnum,QualityOfWorkEnum,PricePerHourEnum])
-        ) id: string):Promise<Mechanic>{
+    update(@Body() updateMechanicDto : UpdateMechanicDto , @Param('id', new ParseUUIDPipe()) id: string):Promise<Mechanic>{
         return this.mechanicService.updateMechanic(id, updateMechanicDto);
     }
 }

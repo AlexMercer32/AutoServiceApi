@@ -1,7 +1,6 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import {Document} from 'mongoose'
 import {CarKindOfWorkEnum, CarMotorEnum} from "../enums/enum.car";
-import {IsEnum, minDate} from "class-validator";
 export type CarDocument = Car & Document;
 @Schema()
 export class Car {
